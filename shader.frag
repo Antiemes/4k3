@@ -122,8 +122,6 @@ void main()
         mix(hs[w],hs[w+1],cmx));
     ////vec3 color = vec3(smoothstep(0., 1., d));
 
-    vec3 col=vec3(d);
-
     col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
     col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
     col *= vec3(0.95,1.05,0.95);
