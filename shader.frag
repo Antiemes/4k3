@@ -113,7 +113,7 @@ void main()
 
     d = .5;
 
-    float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
+    //float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
     
     //vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
     //    mix(hs[w],hs[w+1],cmx));
