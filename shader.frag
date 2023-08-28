@@ -103,6 +103,7 @@ void main()
   float iTime=t*4.;
     vec2 iResolution = vec2(1920., 1080.);
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
+    uv *= 1.77;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
     int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
