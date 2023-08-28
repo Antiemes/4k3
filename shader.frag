@@ -98,7 +98,7 @@ uniform float t;
 //    return d;
 //}
 
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
+void main()
 {
     vec2 iResolution = vec2(1920., 1080.);
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
