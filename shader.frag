@@ -13,13 +13,13 @@ uniform float t;
 //    return fract(p);
 //}
 //
-//float hash13(vec3 p3)
-//{
-//	p3  = fract(p3 * .1031);
-//    p3 += dot(p3, p3.zyx + 31.32);
-//    return fract((p3.x + p3.y) * p3.z);
-//}
-//
+float hash13(vec3 p3)
+{
+	p3  = fract(p3 * .1031);
+    p3 += dot(p3, p3.zyx + 31.32);
+    return fract((p3.x + p3.y) * p3.z);
+}
+
 //vec2 hash21(float p)
 //{
 //	vec3 p3 = fract(vec3(p) * vec3(.1031, .1030, .0973));
@@ -57,15 +57,15 @@ vec3 hueshift (in vec3 color, in float shift)
     return vec3(color);
 }
 
-//vec3 pal( in float t)
-//{
-//    vec3 a=vec3(0.498, 0.498, 0.500);
-//    vec3 b=vec3(-0.652, 0.828, 0.500);
-//    vec3 c=vec3(0.358, 0.498, 0.498);
-//    vec3 d=vec3(0.000, 0.558, 0.500);
-//    return a + b*cos( 6.28318*(c*t+d) );
-//}
-//
+vec3 pal( in float t)
+{
+    vec3 a=vec3(0.498, 0.498, 0.500);
+    vec3 b=vec3(-0.652, 0.828, 0.500);
+    vec3 c=vec3(0.358, 0.498, 0.498);
+    vec3 d=vec3(0.000, 0.558, 0.500);
+    return a + b*cos( 6.28318*(c*t+d) );
+}
+
 //float circ(vec2 uv, int x, int y, int r)
 //{
 //    //return 1.-pow(1.-max(0., 1. - length(p)/r), 2.);
