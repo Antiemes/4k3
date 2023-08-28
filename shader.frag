@@ -3,7 +3,7 @@
 uniform float t;
 #define PI 3.1415926538
 
-#define iTime (t*.25)
+//#define iTime (t*.25)
 
 //float hash11(float p)
 //{
@@ -57,13 +57,13 @@ vec3 hueshift (in vec3 color, in float shift)
     return vec3(color);
 }
 
-vec3 pal( in float t)
+vec3 pal(in float pos)
 {
     vec3 a=vec3(0.498, 0.498, 0.500);
     vec3 b=vec3(-0.652, 0.828, 0.500);
     vec3 c=vec3(0.358, 0.498, 0.498);
     vec3 d=vec3(0.000, 0.558, 0.500);
-    return a + b*cos( 6.28318*(c*t+d) );
+    return a + b*cos( 6.28318*(c*pos+d) );
 }
 
 //float circ(vec2 uv, int x, int y, int r)
@@ -122,11 +122,11 @@ void main()
 
     vec3 col=vec3(.5, .05, .7);
 
-    col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
-    col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
-    col *= vec3(0.95,1.05,0.95);
-    col *= 0.9 ; //+0.1*sin(10.0*t+uv.y*500.0);
-    col *= 0.99 +0.01*vec3(sin(110.0*ttt));
+    //col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
+    //col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
+    //col *= vec3(0.95,1.05,0.95);
+    //col *= 0.9 ; //+0.1*sin(10.0*t+uv.y*500.0);
+    //col *= 0.99 +0.01*vec3(sin(110.0*ttt));
 
     //color *= 1.;
 
