@@ -48,15 +48,15 @@ uniform float t;
 //    return uv*mat2(c,s,-s,c)*sc;
 //}
 //
-//vec3 hueshift (in vec3 color, in float shift)
-//{
-//    vec3 P = vec3(0.55735)*dot(vec3(0.55735),color);
-//    vec3 U = color-P;
-//    vec3 V = cross(vec3(0.55735),U);    
-//    color = U*cos(shift*6.2832) + V*sin(shift*6.2832) + P;
-//    return vec3(color);
-//}
-//
+vec3 hueshift (in vec3 color, in float shift)
+{
+    vec3 P = vec3(0.55735)*dot(vec3(0.55735),color);
+    vec3 U = color-P;
+    vec3 V = cross(vec3(0.55735),U);    
+    color = U*cos(shift*6.2832) + V*sin(shift*6.2832) + P;
+    return vec3(color);
+}
+
 //vec3 pal( in float t)
 //{
 //    vec3 a=vec3(0.498, 0.498, 0.500);
@@ -107,21 +107,17 @@ void main()
     //int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
     //const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
-    //float ss = fract(iTime/6.)*4.-2.;
+    float ss = fract(iTime/6.)*4.-2.;
     ////d = kacsa(scrot(uv-vec2(ss*1.-sin(ss*1.)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
    
 
-    //d = .5;
+    d = .5;
 
-    //float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
-    //
-    //vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
-    //    mix(hs[w],hs[w+1],cmx));
+    float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
+    
+    vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
+        mix(hs[w],hs[w+1],cmx));
     ////vec3 color = vec3(smoothstep(0., 1., d));
-
-    ////col.r = texture(iChannel0,vec2(uv.x+0.003,-uv.y)).x;
-    ////col.g = texture(iChannel0,vec2(uv.x+0.000,-uv.y)).y;
-    ////col.b = texture(iChannel0,vec2(uv.x-0.003,-uv.y)).z;
 
     //col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
     //col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
@@ -130,9 +126,6 @@ void main()
     //col *= 0.99+0.01*sin(110.0*iTime);
 
     //color *= 1.;
-
-    vec3 col=vec3(.2, .6, .1);
-
 
     // Output to screen
     gl_FragColor = vec4(col, 1.0);
