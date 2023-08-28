@@ -100,7 +100,7 @@ vec3 pal( in float t)
 
 void main()
 {
-  float ttt=0.;
+  float ttt=t;
     vec2 iResolution = vec2(1920., 1080.);
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
