@@ -5,77 +5,77 @@ uniform float t;
 
 #define iTime (t*.25)
 
-float hash11(float p)
-{
-    p = fract(p * .1031);
-    p *= p + 19.19;
-    p *= p + p;
-    return fract(p);
-}
-
-float hash13(vec3 p3)
-{
-	p3  = fract(p3 * .1031);
-    p3 += dot(p3, p3.zyx + 31.32);
-    return fract((p3.x + p3.y) * p3.z);
-}
-
-vec2 hash21(float p)
-{
-	vec3 p3 = fract(vec3(p) * vec3(.1031, .1030, .0973));
-	p3 += dot(p3, p3.yzx + 33.33);
-    return fract((p3.xx+p3.yz)*p3.zy);
-
-}
-
-vec3 hash33(vec3 p)
-{ 
-    float n = sin(dot(p, vec3(7, 157, 113)));    
-    return fract(vec3(2097152, 262144, 32768)*n); 
-}
-
-vec2 hash23(vec3 p3)
-{
-	p3 = fract(p3 * vec3(.1031, .1030, .0973));
-    p3 += dot(p3, p3.yzx+33.33);
-    return fract((p3.xx+p3.yz)*p3.zy);
-}
-
-vec2 scrot(vec2 uv, float sc, float rot)
-{
-    float s = sin(rot);
-    float c = cos(rot);
-    return uv*mat2(c,s,-s,c)*sc;
-}
-
-vec3 hueshift (in vec3 color, in float shift)
-{
-    vec3 P = vec3(0.55735)*dot(vec3(0.55735),color);
-    vec3 U = color-P;
-    vec3 V = cross(vec3(0.55735),U);    
-    color = U*cos(shift*6.2832) + V*sin(shift*6.2832) + P;
-    return vec3(color);
-}
-
-vec3 pal( in float t)
-{
-    vec3 a=vec3(0.498, 0.498, 0.500);
-    vec3 b=vec3(-0.652, 0.828, 0.500);
-    vec3 c=vec3(0.358, 0.498, 0.498);
-    vec3 d=vec3(0.000, 0.558, 0.500);
-    return a + b*cos( 6.28318*(c*t+d) );
-}
-
-float circ(vec2 uv, int x, int y, int r)
-{
-    //return 1.-pow(1.-max(0., 1. - length(p)/r), 2.);
-    float xx = float(x)/128.-1.;
-    float yy = 1.-float(y)/128.;
-    vec2 p=vec2(xx,yy);
-    float q = 1.-cos(fract(iTime/6.)*2.-1.);
-    p=p+dot(vec2(q),hash23(vec3(p,iTime*10.)));
-    return 1.-pow(1.-max(0., 1. - length(uv-p)/(float(r)/128.)), 2.);
-}
+//float hash11(float p)
+//{
+//    p = fract(p * .1031);
+//    p *= p + 19.19;
+//    p *= p + p;
+//    return fract(p);
+//}
+//
+//float hash13(vec3 p3)
+//{
+//	p3  = fract(p3 * .1031);
+//    p3 += dot(p3, p3.zyx + 31.32);
+//    return fract((p3.x + p3.y) * p3.z);
+//}
+//
+//vec2 hash21(float p)
+//{
+//	vec3 p3 = fract(vec3(p) * vec3(.1031, .1030, .0973));
+//	p3 += dot(p3, p3.yzx + 33.33);
+//    return fract((p3.xx+p3.yz)*p3.zy);
+//
+//}
+//
+//vec3 hash33(vec3 p)
+//{ 
+//    float n = sin(dot(p, vec3(7, 157, 113)));    
+//    return fract(vec3(2097152, 262144, 32768)*n); 
+//}
+//
+//vec2 hash23(vec3 p3)
+//{
+//	p3 = fract(p3 * vec3(.1031, .1030, .0973));
+//    p3 += dot(p3, p3.yzx+33.33);
+//    return fract((p3.xx+p3.yz)*p3.zy);
+//}
+//
+//vec2 scrot(vec2 uv, float sc, float rot)
+//{
+//    float s = sin(rot);
+//    float c = cos(rot);
+//    return uv*mat2(c,s,-s,c)*sc;
+//}
+//
+//vec3 hueshift (in vec3 color, in float shift)
+//{
+//    vec3 P = vec3(0.55735)*dot(vec3(0.55735),color);
+//    vec3 U = color-P;
+//    vec3 V = cross(vec3(0.55735),U);    
+//    color = U*cos(shift*6.2832) + V*sin(shift*6.2832) + P;
+//    return vec3(color);
+//}
+//
+//vec3 pal( in float t)
+//{
+//    vec3 a=vec3(0.498, 0.498, 0.500);
+//    vec3 b=vec3(-0.652, 0.828, 0.500);
+//    vec3 c=vec3(0.358, 0.498, 0.498);
+//    vec3 d=vec3(0.000, 0.558, 0.500);
+//    return a + b*cos( 6.28318*(c*t+d) );
+//}
+//
+//float circ(vec2 uv, int x, int y, int r)
+//{
+//    //return 1.-pow(1.-max(0., 1. - length(p)/r), 2.);
+//    float xx = float(x)/128.-1.;
+//    float yy = 1.-float(y)/128.;
+//    vec2 p=vec2(xx,yy);
+//    float q = 1.-cos(fract(iTime/6.)*2.-1.);
+//    p=p+dot(vec2(q),hash23(vec3(p,iTime*10.)));
+//    return 1.-pow(1.-max(0., 1. - length(uv-p)/(float(r)/128.)), 2.);
+//}
 
 //float kacsa(vec2 uv, int w, float q)
 //{
@@ -104,32 +104,34 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
-    int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
-    const float hs[5] = float[5](0., .4, .7, .23, 0.);
+    //int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
+    //const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
-    float ss = fract(iTime/6.)*4.-2.;
-    //d = kacsa(scrot(uv-vec2(ss*1.-sin(ss*1.)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
+    //float ss = fract(iTime/6.)*4.-2.;
+    ////d = kacsa(scrot(uv-vec2(ss*1.-sin(ss*1.)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
    
 
-    d = .5;
+    //d = .5;
 
-    float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
-    
-    vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
-        mix(hs[w],hs[w+1],cmx));
-    //vec3 color = vec3(smoothstep(0., 1., d));
+    //float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
+    //
+    //vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
+    //    mix(hs[w],hs[w+1],cmx));
+    ////vec3 color = vec3(smoothstep(0., 1., d));
 
-    //col.r = texture(iChannel0,vec2(uv.x+0.003,-uv.y)).x;
-    //col.g = texture(iChannel0,vec2(uv.x+0.000,-uv.y)).y;
-    //col.b = texture(iChannel0,vec2(uv.x-0.003,-uv.y)).z;
+    ////col.r = texture(iChannel0,vec2(uv.x+0.003,-uv.y)).x;
+    ////col.g = texture(iChannel0,vec2(uv.x+0.000,-uv.y)).y;
+    ////col.b = texture(iChannel0,vec2(uv.x-0.003,-uv.y)).z;
 
-    col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
-    col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
-    col *= vec3(0.95,1.05,0.95);
-    col *= 0.9+0.1*sin(10.0*iTime+uv.y*500.0);
-    col *= 0.99+0.01*sin(110.0*iTime);
+    //col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
+    //col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
+    //col *= vec3(0.95,1.05,0.95);
+    //col *= 0.9+0.1*sin(10.0*iTime+uv.y*500.0);
+    //col *= 0.99+0.01*sin(110.0*iTime);
 
     //color *= 1.;
+
+    vec3 col=vec3(.2, .6, .1);
 
 
     // Output to screen
