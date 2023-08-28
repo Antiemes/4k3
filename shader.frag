@@ -106,7 +106,7 @@ void main()
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
     int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
-    //const float hs[5] = float[5](0., .4, .7, .23, 0.);
+    const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
     //float ss = fract(iTime/6.)*4.-2.;
     ////d = kacsa(scrot(uv-vec2(ss*1.-sin(ss*1.)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
