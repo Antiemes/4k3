@@ -109,6 +109,9 @@ void main()
     const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
     float ss = fract(iTime/6.)*4.-2.;
+
+    d = abs(length(uv)-1.);
+
     ////d = kacsa(scrot(uv-vec2(ss*1.-sin(ss*1.)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
    
 
