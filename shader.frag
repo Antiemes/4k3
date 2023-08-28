@@ -100,7 +100,7 @@ vec3 pal(in float pos)
 
 void main()
 {
-  float ttt=t;
+  float iTime=t*4.;
     vec2 iResolution = vec2(1920., 1080.);
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
@@ -126,7 +126,7 @@ void main()
     //col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
     //col *= vec3(0.95,1.05,0.95);
     //col *= 0.9 ; //+0.1*sin(10.0*t+uv.y*500.0);
-    col *= 0.99 +0.01*vec3(sin(110.0*ttt));
+    col *= 0.99 +0.01*vec3(sin(110.0*t));
 
     //color *= 1.;
 
