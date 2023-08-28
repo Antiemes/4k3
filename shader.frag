@@ -105,7 +105,7 @@ void main()
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
-    //int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
+    int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
     //const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
     //float ss = fract(iTime/6.)*4.-2.;
