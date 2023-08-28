@@ -115,9 +115,11 @@ void main()
 
     float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
     
-    vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
-        mix(hs[w],hs[w+1],cmx));
+    //vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
+    //    mix(hs[w],hs[w+1],cmx));
     ////vec3 color = vec3(smoothstep(0., 1., d));
+
+    vec3 col=vec3(.5, .05, .7);
 
     //col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
     //col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
