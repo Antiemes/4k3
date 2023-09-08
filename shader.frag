@@ -174,7 +174,7 @@ void main()
         w=2;
         ss/=(t-104.);
         kmul/=(t/10.-10.4);
-        kmul+=beat/1.3.;
+        kmul+=beat/1.3;
       }
     }
 
