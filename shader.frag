@@ -10,20 +10,6 @@ float hash13(vec3 p3)
     return fract((p3.x + p3.y) * p3.z);
 }
 
-vec2 hash21(float p)
-{
-	vec3 p3 = fract(vec3(p) * vec3(.1031, .1030, .0973));
-	p3 += dot(p3, p3.yzx + 33.33);
-    return fract((p3.xx+p3.yz)*p3.zy);
-
-}
-
-vec3 hash33(vec3 p)
-{ 
-    float n = sin(dot(p, vec3(7, 157, 113)));    
-    return fract(vec3(2097152, 262144, 32768)*n); 
-}
-
 vec2 hash23(vec3 p3)
 {
 	p3 = fract(p3 * vec3(.1031, .1030, .0973));
