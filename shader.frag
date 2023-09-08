@@ -180,9 +180,9 @@ void main()
     }
 
     float ss1=0.;
-    if (t>112.)
+    if (t>108.)
     {
-      ss1*=(t-112.);
+      ss1*=(t-108.);
     }
     d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss1, sin(ss*1.2)-ss*1.2), w, ss, rc);
    
