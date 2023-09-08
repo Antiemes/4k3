@@ -146,12 +146,12 @@ void main()
     float kmul = 1.0;
     float rc = 0.;
     int w = 0;
-    if (t<8)
+    if (t<4)
     {
       cmul = hh;
       kmul = 0.;
     }
-    else if (t<12)
+    else if (t<8)
     {
       cmul = smoothstep(0., 1., hh + (t-12.)/4.);
       cmul = beat;
