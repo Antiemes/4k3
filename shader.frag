@@ -172,7 +172,7 @@ void main()
       if (ww > 12)
       {
         w=2;
-        ss/=(t-50.);
+        ss/=(t-104.);
         ss+=beat/3.
       }
     }
