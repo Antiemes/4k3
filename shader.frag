@@ -161,7 +161,7 @@ void main()
     else
     {
       rc = 1.-cos(fract(t/16.)*2.-1.);
-      if (true)
+      if ((w%2)==1)
       {
         w=w/2+3;
       }
