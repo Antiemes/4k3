@@ -3,8 +3,6 @@
 uniform float t;
 #define PI 3.1415926538
 
-//#define iTime (t*.25)
-
 float hash11(float p)
 {
     p = fract(p * .1031);
@@ -68,13 +66,12 @@ vec3 pal(in float pos)
 
 float circ(vec2 uv, int x, int y, int r)
 {
-  float iTime = t*4.;
     //return 1.-pow(1.-max(0., 1. - length(p)/r), 2.);
     float xx = float(x)/128.-1.;
     float yy = 1.-float(y)/128.;
     vec2 p=vec2(xx,yy);
-    float q = 1.-cos(fract(iTime/6.)*2.-1.);
-    p=p+dot(vec2(q),hash23(vec3(p,iTime*10.)));
+    float q = 1.-cos(fract(t/16.)*2.-1.);
+    p=p+dot(vec2(q),hash23(vec3(p,t*7.)));
     return 1.-pow(1.-max(0., 1. - length(uv-p)/(float(r)/128.)), 2.);
 }
 
@@ -101,32 +98,33 @@ float kacsa(vec2 uv, int w, float q)
 
 void main()
 {
-  float iTime=t*4.;
     vec2 iResolution = vec2(1920., 1080.);
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
     uv *= 1.77;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
-    int w=int(fract(iTime/(6.*4.)+1./4.)*4.);
+    int w=int(fract(t/(16.*4.)+1./4.)*4.);
     const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
-    float ss = fract(iTime/6.)*4.-2.;
+    float ss = fract(t/16.)*4.-2.;
 
-    d = kacsa(scrot(uv-vec2(ss*1.-sin(ss*1.)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
+    d = kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
    
     float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
     
-    vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., iTime*99.45)))),
+    vec3 col = hueshift(pal(smoothstep(-10., 10., d*4.-2.+hash13(vec3(uv*9873., t*99.45)))),
         mix(hs[w],hs[w+1],cmx));
     ////vec3 color = vec3(smoothstep(0., 1., d));
 
     col = clamp(col*0.5+0.5*col*col*1.2,0.0,1.0);
     col *= 0.5 + 1.*(1.77-uv.x)*(1.77+uv.x)*(1.-uv.y)*(1.+uv.y);
     col *= vec3(0.95,1.05,0.95);
-    col *= 0.9 +0.1*sin(10.0*iTime+uv.y*500.0);
-    col *= 0.99 +0.01*sin(110.0*iTime);
+    col *= 0.9 +0.1*sin(10.0*t+uv.y*1000.0);
+    col *= 0.99 +0.01*sin(55.0*t);
 
-    //color *= 1.;
+    float beat = (1.-smoothstep(.0, .3, fract(t)));
+    //col *= beat;
+    //col = smoothstep(.2, .8, col);
 
     // Output to screen
     gl_FragColor = vec4(col, 1.0);
