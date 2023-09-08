@@ -1,4 +1,4 @@
-#version 130
+#version 120
 
 uniform float t;
 #define PI 3.1415926538
