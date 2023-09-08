@@ -134,10 +134,10 @@ void main()
     uv *= 1.77;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
-    int ww=int(fract(t/(16.*12.)+1./12.)*12.);
+    int ww=int(fract(t/(8.*12.)+1./12.)*12.);
     const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
-    float ss = fract(t/16.)*4.-2.;
+    float ss = fract(t/8.)*4.-2.;
 
     float beat = 1.-smoothstep(.0, .3, fract(t));
     float hh = 1.-smoothstep(.0, .45, fract(t*2.-.35));
@@ -160,7 +160,7 @@ void main()
     }
     else
     {
-      rc = 1.-cos(fract(t/16.)*2.-1.);
+      rc = 1.-cos(fract(t/8.)*2.-1.);
       if (ww/2 == (ww-1)/2)  // 3/2 == 1,  2/2 == 1
       {
         w=ww/2+3;
