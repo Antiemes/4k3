@@ -131,7 +131,7 @@ void main()
 {
     vec2 iResolution = vec2(1920., 1080.);
 	  vec2 uv = (gl_FragCoord.xy - iResolution.xy / 2.) / iResolution.y;
-    uv *= 1.77;
+    uv *= 1.9;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
     //int ww=int(fract(t/(8.*12.)+1./12.)*12.);
@@ -184,7 +184,7 @@ void main()
     {
       ss1*=(t-112.);
     }
-    d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss1*ss1, sin(ss*1.2)-ss*1.2), w, ss, rc);
+    d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss1, sin(ss*1.2)-ss*1.2), w, ss, rc);
    
     float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
     
