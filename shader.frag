@@ -163,7 +163,7 @@ void main()
       rc = 1.-cos(fract(t/8.)*2.-1.);
       if (ww/2 == (ww-1)/2)  // 3/2 == 1,  2/2 == 1
       {
-        w=ww/2+3;
+        w=ww/2+2;
       }
       else
       {
