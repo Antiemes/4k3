@@ -169,6 +169,12 @@ void main()
       {
         w=9;
       }
+      if (ww > 12)
+      {
+        w=2;
+        ss/=(t-50.);
+        ss+=beat/3.
+      }
     }
 
     d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss, rc);
