@@ -146,12 +146,12 @@ void main()
     float kmul = 1.0;
     float rc = 0.;
     int w = 0;
-    if (t<4)
+    if (t<4.)
     {
       cmul = hh;
       kmul = 0.;
     }
-    else if (t<8)
+    else if (t<8.)
     {
       cmul = smoothstep(0., 1., hh + (t-12.)/4.);
       cmul = beat;
@@ -163,11 +163,11 @@ void main()
       rc = 1.-cos(fract(t/8.)*2.-1.);
       if (ww/2 == (ww-1)/2)  // 3/2 == 1,  2/2 == 1
       {
-        w=9;
+        w=ww/2+3;
       }
       else
       {
-        w=ww/2+3;
+        w=9;
       }
       if (t > 104.)
       {
