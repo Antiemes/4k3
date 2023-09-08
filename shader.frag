@@ -3,14 +3,6 @@
 uniform float t;
 #define PI 3.1415926538
 
-float hash11(float p)
-{
-    p = fract(p * .1031);
-    p *= p + 19.19;
-    p *= p + p;
-    return fract(p);
-}
-
 float hash13(vec3 p3)
 {
 	p3  = fract(p3 * .1031);
