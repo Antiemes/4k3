@@ -179,7 +179,12 @@ void main()
       }
     }
 
-    d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss, rc);
+    float ss1=0.;
+    if (t>112.)
+    {
+      ss1*=(t-112.);
+    }
+    d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss1*ss1, sin(ss*1.2)-ss*1.2), w, ss, rc);
    
     float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
     
