@@ -64,18 +64,18 @@ vec3 pal(in float pos)
     return a + b*cos( 6.28318*(c*pos+d) );
 }
 
-float circ(vec2 uv, int x, int y, int r)
+float circ(vec2 uv, int x, int y, int r, float rc)
 {
     //return 1.-pow(1.-max(0., 1. - length(p)/r), 2.);
     float xx = float(x)/128.-1.;
     float yy = 1.-float(y)/128.;
     vec2 p=vec2(xx,yy);
-    float q = 1.-cos(fract(t/16.)*2.-1.);
-    p=p+dot(vec2(q),hash23(vec3(p,t*7.)));
+    //float q = 1.-cos(fract(t/16.)*2.-1.);
+    p=p+dot(vec2(rc),hash23(vec3(p,t*7.)));
     return 1.-pow(1.-max(0., 1. - length(uv-p)/(float(r)/128.)), 2.);
 }
 
-float kacsa(vec2 uv, int w, float q)
+float kacsa(vec2 uv, int w, float q, float rc)
 {
     float d=0.;
     const int a[48*3*8] = int[48*3*8](
@@ -108,7 +108,7 @@ float kacsa(vec2 uv, int w, float q)
     int i;
     for (i=0; i<48*3; i+=3)
     {
-        d+=circ(uv, a[i+w*48*3], a[i+w*48*3+1], a[i+w*48*3+2]);
+        d+=circ(uv, a[i+w*48*3], a[i+w*48*3+1], a[i+w*48*3+2], rc);
     }
 
     return d;
@@ -121,12 +121,35 @@ void main()
     uv *= 1.77;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
-    int w=int(fract(t/(16.*4.)+1./4.)*4.);
+    int w=int(fract(t/(16.*8.)+1./8.)*8.);
     const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
     float ss = fract(t/16.)*4.-2.;
 
-    d = kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss);
+    float beat = 1.-smoothstep(.0, .3, fract(t));
+    float hh = 1.-smoothstep(.0, .45, fract(t*2.-.35));
+
+    float cmul = 1.0;
+    float kmul = 1.0;
+    float rc = 0.;
+    if (t<12)
+    {
+      cmul = hh;
+      kmul = 0.;
+    }
+    else if (t<16)
+    {
+      cmul = smoothstep(0., 1., hh + (t-12.)/4.);
+      cmul = beat;
+      ss = 0.;
+      w = int(t - 12.);
+    }
+    else
+    {
+      rc = 1.-cos(fract(t/16.)*2.-1.);
+    }
+
+    d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss, rc);
    
     float cmx=pow(sin(ss*PI/8.+PI/2.),31.)*.5+.5;
     
@@ -140,8 +163,7 @@ void main()
     col *= 0.9 +0.1*sin(10.0*t+uv.y*1000.0);
     col *= 0.99 +0.01*sin(55.0*t);
 
-    float beat = (1.-smoothstep(.0, .3, fract(t)));
-    //col *= beat;
+    col *= cmul;
     //col = smoothstep(.2, .8, col);
 
     // Output to screen

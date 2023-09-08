@@ -8,7 +8,7 @@
 %define MAX_VOICES 1
 %define HLD 1
 %define BPM 125.000000
-%define MAX_PATTERNS 39
+%define MAX_PATTERNS 17
 %define PATTERN_SIZE_SHIFT 4
 %define PATTERN_SIZE (1 << PATTERN_SIZE_SHIFT)
 %define	MAX_TICKS (MAX_PATTERNS*PATTERN_SIZE)
@@ -453,10 +453,11 @@ go4k_patterns
 	db	HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	71, 0, 0, 0, 0, 0, 83, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	76, 0, 0, 0, 71, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-	db	0, 0, 0, 0, 60, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 60, HLD, HLD, HLD, 
-	db	HLD, HLD, HLD, HLD, 60, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 60, HLD, HLD, 60, 
+	db	0, 0, 0, 0, 60, HLD, HLD, HLD, 60, 60, 60, HLD, 60, HLD, 60, 60, 
 	db	HLD, HLD, HLD, HLD, 60, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 60, HLD, HLD, HLD, 
+	db	HLD, HLD, HLD, HLD, 60, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 60, HLD, HLD, 60, 
 	db	HLD, HLD, 60, HLD, HLD, 60, HLD, HLD, HLD, HLD, 60, HLD, 60, HLD, HLD, 60, 
+	db	HLD, HLD, HLD, HLD, 60, HLD, HLD, HLD, 60, 60, 60, HLD, 60, HLD, 60, 60, 
 	db	48, HLD, HLD, HLD, 48, HLD, HLD, HLD, 48, HLD, HLD, HLD, 48, HLD, HLD, HLD, 
 	db	48, HLD, HLD, HLD, 48, HLD, HLD, HLD, 48, HLD, HLD, HLD, 48, HLD, HLD, 48, 
 	db	60, 0, 60, 0, 60, 0, 60, 0, 60, 0, 60, 0, 60, 0, 60, 0, 
@@ -468,10 +469,10 @@ section .g4kmuc2 data align=1
 section .data
 %endif
 go4k_pattern_lists
-Instrument0List		db	1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 
-Instrument4List		db	5, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 
-Instrument5List		db	9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 9, 9, 9, 10, 
-Instrument6List		db	11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 12, 11, 
+Instrument0List		db	0, 0, 0, 0, 1, 2, 3, 4, 0, 0, 0, 0, 1, 2, 3, 4, 0, 
+Instrument4List		db	0, 0, 0, 5, 6, 7, 6, 8, 2, 2, 2, 9, 6, 7, 6, 8, 2, 
+Instrument5List		db	0, 0, 0, 10, 10, 10, 11, 10, 2, 2, 2, 10, 10, 10, 11, 10, 2, 
+Instrument6List		db	12, 13, 12, 13, 12, 13, 12, 13, 12, 13, 12, 13, 12, 13, 12, 13, 12, 
 go4k_pattern_lists_end
 %ifdef USE_SECTIONS
 section .g4kmuc3 data align=1
