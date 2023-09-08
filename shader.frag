@@ -44,11 +44,9 @@ vec3 pal(in float pos)
 
 float circ(vec2 uv, int x, int y, int r, float rc)
 {
-    //return 1.-pow(1.-max(0., 1. - length(p)/r), 2.);
     float xx = float(x)/128.-1.;
     float yy = 1.-float(y)/128.;
     vec2 p=vec2(xx,yy);
-    //float q = 1.-cos(fract(t/16.)*2.-1.);
     p=p+dot(vec2(rc),hash23(vec3(p,t*7.)));
     return 1.-pow(1.-max(0., 1. - length(uv-p)/(float(r)/128.)), 2.);
 }
