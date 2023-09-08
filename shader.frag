@@ -169,11 +169,12 @@ void main()
       {
         w=9;
       }
-      if (ww > 10)
+      if (ww > 11)
       {
         w=2;
         ss/=(t-104.);
-        ss+=beat/3.;
+        kmul/=(t/10.-10.4);
+        kmul+=beat/3.;
       }
     }
 
