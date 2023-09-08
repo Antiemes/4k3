@@ -134,7 +134,8 @@ void main()
     uv *= 1.77;
     //vec2 uv = (fragCoord*2.0-iResolution.xy)/iResolution.y;
     float d=0.;
-    int ww=int(fract(t/(8.*12.)+1./12.)*12.);
+    //int ww=int(fract(t/(8.*12.)+1./12.)*12.);
+    int ww=int(t/8.);
     const float hs[5] = float[5](0., .4, .7, .23, 0.);
 
     float ss = fract(t/8.)*4.-2.;
@@ -169,13 +170,13 @@ void main()
       {
         w=9;
       }
-      if (t > 128.)
-      {
-        w=2;
-        ss/=(t-120.);
-        kmul/=(t/10.-10.4);
-        kmul+=beat/1.3;
-      }
+      //if (t > 128.)
+      //{
+      //  w=2;
+      //  ss/=(t-120.);
+      //  kmul/=(t/10.-10.4);
+      //  kmul+=beat/1.3;
+      //}
     }
 
     d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss, rc);
