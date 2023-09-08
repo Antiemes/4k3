@@ -173,7 +173,7 @@ void main()
       {
         w=2;
         ss/=(t-104.);
-        ss+=beat/3.
+        ss+=beat/3.;
       }
     }
 
