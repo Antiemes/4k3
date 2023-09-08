@@ -170,13 +170,13 @@ void main()
       {
         w=ww/2+2;
       }
-      //if (t > 128.)
-      //{
-      //  w=2;
-      //  ss/=(t-120.);
-      //  kmul/=(t/10.-10.4);
-      //  kmul+=beat/1.3;
-      //}
+      if (t > 104.)
+      {
+        w=2;
+        ss/=(t-104.);
+        kmul/=(t/10.-10.4);
+        kmul+=beat/1.3;
+      }
     }
 
     d = kmul*kacsa(scrot(uv-vec2(ss-sin(ss)), pow(.3+cos(ss/2.8*PI/1.),.5)+ss*ss*0., sin(ss*1.2)-ss*1.2), w, ss, rc);
