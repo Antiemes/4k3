@@ -3,6 +3,45 @@
 uniform float t;
 #define PI 3.1415926538
 
+vec4 map(in vec2 uv, float ttt)
+{
+    vec2 o;
+    
+    float tpos = mod(ttt, 3.);
+    float r;
+    if (tpos<.5)
+    {
+        r = 1.;
+        o = vec2(0., 0.);
+    }
+    else if (tpos<1.5)
+    {
+        r = .6;
+        o = vec2(0., 0.);
+    }
+    else if (tpos<2.3)
+    {
+        r = .7;
+        o = vec2(0., 0.);
+    }
+    else
+    {
+        r = 2.1;
+        o = vec2(-1., -.5);
+    }
+    
+    vec3 d;
+        
+    d.x = smoothstep(-.1, .1, length(uv-o)-r);
+    
+    float alpha = 1.;
+    d.y = cos(dot(uv*10., vec2(cos(alpha), sin(alpha))));
+    d.z = sin(uv.x*1.02+uv.y*.71+1.2+ttt*2.7)*sin(uv.x*.67+uv.y*.812+4.*sin(uv.x*.31+uv.y*.79));
+    
+    
+    return vec4(d.zzz, 1.);
+}
+
 void main()
 {
     vec2 iResolution = vec2(1920., 1080.);
@@ -24,8 +63,8 @@ void main()
     pos.y = floor(p.y);
     pp.x = p.x-floor(p.x)-.5;
     pp.y = p.y-floor(p.y)-.5;
-    //vec4 c = map(pos/corr, iTime);
-    vec4 c = vec4(.5);
+    vec4 c = map(pos/corr, iTime);
+    //vec4 c = vec4(.5);
 
     vec2 rot=vec2(cos(c.x*PI/2.+t), -sin(c.x*PI/2.+t*2.));
     //rot = vec2(1., 0.);
