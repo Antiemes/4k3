@@ -1,4 +1,4 @@
-#version 130
+#version 120
 
 uniform float t;
 #define PI 3.1415926538
@@ -18,8 +18,8 @@ void main()
     vec2 pos;
 
 
-	pp.x = modf(p.x, pos.x)-.5;
-    pp.y = modf(p.y, pos.y)-.5;
+	//pp.x = modf(p.x, pos.x)-.5;
+  //  pp.y = modf(p.y, pos.y)-.5;
     pp.x = p.x-floor(p.x)-.5;
     pp.y = p.y-floor(p.y)-.5;
     //vec4 c = map(pos/corr, iTime);
