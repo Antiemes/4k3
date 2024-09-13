@@ -63,7 +63,7 @@ void main()
     pos.y = floor(p.y);
     pp.x = p.x-floor(p.x)-.5;
     pp.y = p.y-floor(p.y)-.5;
-    vec4 c = map(pos/corr, iTime);
+    vec4 c = map(pos/corr, t);
     //vec4 c = vec4(.5);
 
     vec2 rot=vec2(cos(c.x*PI/2.+t), -sin(c.x*PI/2.+t*2.));
