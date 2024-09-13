@@ -20,6 +20,8 @@ void main()
 
 	//pp.x = modf(p.x, pos.x)-.5;
   //  pp.y = modf(p.y, pos.y)-.5;
+    pos.x = floor(p.x);
+    pos.y = floor(p.y);
     pp.x = p.x-floor(p.x)-.5;
     pp.y = p.y-floor(p.y)-.5;
     //vec4 c = map(pos/corr, iTime);
